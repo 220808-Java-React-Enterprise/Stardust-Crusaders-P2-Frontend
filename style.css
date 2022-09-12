@@ -3,7 +3,7 @@ h1{
 }
 
 .topnav {
-  background-color: #333;
+  background-color: #269faf;
   height: 10vh;
   overflow: hidden;
 }
@@ -46,4 +46,18 @@ h1{
   margin: 0 auto;
   background-color: #ddd;
   height: 100vh;
+}
+
+.banner{
+  height: 50%;
+  background-image: url('poke_banner.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 100% 100%;
+}
+
+.banner .image{
+  max-width:100%;
+max-height:100%;
+
 }
