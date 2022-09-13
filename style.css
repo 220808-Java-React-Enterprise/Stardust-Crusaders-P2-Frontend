@@ -45,11 +45,11 @@ h1{
 
   margin: 0 auto;
   background-color: #ddd;
-  height: 100vh;
+  min-height:100%;
 }
 
 .banner{
-  height: 50%;
+  height: 50vh;
   background-image: url('poke_banner.png');
   background-repeat: no-repeat;
   background-size: contain;
@@ -59,5 +59,43 @@ h1{
 .banner .image{
   max-width:100%;
 max-height:100%;
+}
 
+.column {
+  float: left;
+  width: 25%;
+  padding: 5px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.content{
+  min-height: 50vh;
+  background-color:lightblue;
+
+}
+
+/* Clearfix (clear floats) */
+.icons::after {
+  content: "";
+  clear: both;
+  display: flex;
+
+}
+
+
+
+.icons{
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  display: flex;
+  justify-content: center;
+}
+
+
+footer {
+    margin-top: auto;
+    height: 20vh;
+    background-color: #0d4249;
 }
