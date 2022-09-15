@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import YOLP_API from "../../utils/ApiConfigs";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css"
+import PokeApi from "../../utils/ApiConfigs";
 
 /*
  * export default: a module is a self contained unit that can expose assets to other modules using export, and acquire assets from other modules using import. 
@@ -31,7 +32,7 @@ export default function Register() {
     function submit(event: { preventDefault: () => void; }) {
         event.preventDefault();
 
-        YOLP_API.post("/users/signup", {
+        PokeApi.post("/users/signup", {
             username: username,
             password1: password,
             password2: password2
