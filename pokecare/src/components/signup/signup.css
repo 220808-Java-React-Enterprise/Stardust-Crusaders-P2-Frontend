@@ -4,8 +4,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    -webkit-text-stroke: .5px grey;
-    font-color: black;
 }
 
 .background {
@@ -20,50 +18,24 @@
 }
 
 .background .shape {
-    box-sizing: border-box;
-      border: 10px solid #262122;
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
     position: absolute;
-    border-radius: 100%;
-    margin: 0 auto;
-
-}
-
-.background .shape:before,
-.background .shape:after {
-  content: " ";
-  border-radius: 100%;
-  display: block;
-  position: absolute;
-}
-
-.background .shape:before {
-  background: #262122;
-  width: 80px;
-  height: 80px;
-  margin-top: 75px;
-  margin-left: 75px;
-}
-
-.background .shape:after {
-  background: #fff;
-  width: 80px;
-  height: 80px;
-  margin-top: 75px;
-  margin-left: 75px;
-  border: double 20px #262122;
+    border-radius: 50%;
 }
 
 .shape:first-child {
-    background: linear-gradient( 150deg, #BA0C2F 0%, #BA0C2F 48%, #262122 48%, #262122 52%, #FFF 52%, #FFF 100%);
-    left: -140px;
+    background: linear-gradient(#1845ad,
+            #23a2f6);
+    left: -80px;
     top: -80px;
 }
 
 .shape:last-child {
-    background: linear-gradient( 210deg, #BA0C2F 0%, #BA0C2F 48%, #262122 48%, #262122 52%, #FFF 52%, #FFF 100%);
-    right: -140px;
+    background: linear-gradient(to right,
+            #ff512f,
+            #f09819);
+    right: -30px;
     bottom: -80px;
 }
 
@@ -103,6 +75,7 @@ label {
     font-size: 16px;
     font-weight: 500;
 }
+
 input {
     display: block;
     height: 50px;
