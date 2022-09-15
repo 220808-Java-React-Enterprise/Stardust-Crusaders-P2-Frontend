@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import YOLP_API from "../../utils/ApiConfigs";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css"
 import PokeApi from "../../utils/ApiConfigs";
@@ -39,7 +38,7 @@ export default function Register() {
         })
             .then(() => {
                 alert("Account created successfully!");
-                navigate("/login");
+                navigate("/home");
             })
             .catch(error => {
                 alert(error.response.data.message);
