@@ -6,11 +6,7 @@ import { BrowserRouter, Route, Routes} from "react-router-dom"
 import Login from './components/login/Login';
 import Home from './components/home/Home'
 import Navbar from './components/navbar/Navbar';
-<<<<<<< Updated upstream
-=======
 import Inventory from './components/inventory/Inventory';
-import Profile from './components/profile/Profile';
->>>>>>> Stashed changes
 
 function App() {
   return (
@@ -20,13 +16,8 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/home" element={<Home />}></Route>
-<<<<<<< Updated upstream
-=======
         <Route path="/inventory" element={<Inventory />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
 
-
->>>>>>> Stashed changes
         
       </Routes>
     </BrowserRouter>
