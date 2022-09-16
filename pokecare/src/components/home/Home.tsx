@@ -30,8 +30,6 @@ export default function Home({currentUser}: UserProp) {
 
   </h1>
 </div>
-currentUser ? <h2>logged in!</h2>
-: <h2>not logged in</h2>
 </div>
 
 

@@ -12,7 +12,8 @@ export default function Navbar({currentUser}: UserProp) {
 
     function logout(){
         window.sessionStorage.removeItem("user");
-        navigate("/");
+        navigate("/home");
+        window.location.reload();
     }
 
     return (
@@ -24,7 +25,7 @@ export default function Navbar({currentUser}: UserProp) {
   <a href="#contact">Contact</a>
   <a href="#about">About</a>
   {currentUser ? <a className="cta" onClick={logout}>Sign Out</a>
-  : <a className="cta" onClick={() => navigate("/signup")}>Sign In</a>}
+  : <a className="cta" onClick={() => navigate("/auth")}>Sign In</a>}
 </div>
 
             </body>
