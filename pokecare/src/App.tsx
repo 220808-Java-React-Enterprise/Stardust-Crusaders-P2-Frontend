@@ -19,7 +19,7 @@ function App() {
       <Navbar currentUser={user} />
       <Routes>
         <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/login" element={<Login currentUser={user} updateCurrentUser={setUser} />}></Route>
+        <Route path="/auth" element={<Login currentUser={user} updateCurrentUser={setUser} />}></Route>
         <Route path="/home" element={<Home currentUser={user} />}></Route>
         
       </Routes>

@@ -33,7 +33,7 @@ export default function Login({currentUser, updateCurrentUser}: UserProp) {
     function submit(event: { preventDefault: () => void; }) {
         event.preventDefault();
 
-        PokeApi.post("/users/auth", {
+        PokeApi.post("/auth", {
             username: username,
             password: password,  
         })
