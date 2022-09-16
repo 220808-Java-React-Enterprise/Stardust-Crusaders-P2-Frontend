@@ -48,7 +48,12 @@ export default function Login({currentUser, updateCurrentUser}: UserProp) {
 
         setUsername("");
         setPassword("");
-       
+    }
+
+    function route(event: {preventDefault: () => void; }){
+        event.preventDefault();
+
+        navigate("/signup");
     }
 
     return (
@@ -60,14 +65,17 @@ export default function Login({currentUser, updateCurrentUser}: UserProp) {
                         <div className="shape"></div>
                     </div>
                     <form onSubmit={submit}>
-                        <h3>Register</h3>
+                        <h3>Sign In</h3>
                         <label htmlFor="username">Username</label>
                         <input type="text" placeholder="Username" id="username" value={username} onChange={updateUsername}/>
 
                         <label htmlFor="password">Password</label>
                         <input type="password" placeholder="Password" id="password" value={password} onChange={updatePassword}/>
 
-                        <button type="submit">Create Account</button>
+                        <button type="submit">Sign In</button>
+                        
+                        <button onClick={route}>Create an Account!</button>
+                        
                     </form>
                 </div>
             </body>
