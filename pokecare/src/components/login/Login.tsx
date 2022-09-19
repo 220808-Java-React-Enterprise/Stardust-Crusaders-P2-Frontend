@@ -61,11 +61,11 @@ export default function Login({currentUser, updateCurrentUser}: UserProp) {
         <>
             <body>
                 <div>
-                    <div className="background">
+                    <div className="loginBackground">
                         <div className="shape"></div>
                         <div className="shape"></div>
                     </div>
-                    <form onSubmit={submit}>
+                    <form className="loginForm" onSubmit={submit}>
                         <h3>Sign In</h3>
                         <label htmlFor="username">Username</label>
                         <input type="text" placeholder="Username" id="username" value={username} onChange={updateUsername}/>

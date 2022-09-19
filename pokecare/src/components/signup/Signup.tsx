@@ -74,11 +74,11 @@ export default function Register() {
         <>
             <body>
                 <div>
-                    <div className="background">
+                    <div className="SignupBackground">
                         <div className="shape"></div>
                         <div className="shape"></div>
                     </div>
-                    <form onSubmit={submit}>
+                    <form className="signupForm" onSubmit={submit}>
                         <h3>Register</h3>
                         <label htmlFor="username">Username</label>
                         <input type="text" placeholder="Username" id="username" value={username} onChange={updateUsername}/>
