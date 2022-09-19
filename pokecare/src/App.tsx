@@ -8,6 +8,7 @@ import Navbar from './components/navbar/Navbar';
 import Inventory from './components/inventory/Inventory';
 import Profile from './components/profile/Profile';
 import User from './models/User';
+// import Pokemon_details from './components/pokemon_details/Pokemon_details';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -20,11 +21,11 @@ function App() {
       <Navbar currentUser={user} />
       <Routes>
         <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/login" element={<Login currentUser={user} updateCurrentUser={setUser} />}></Route>
+        <Route path="/auth" element={<Login currentUser={user} updateCurrentUser={setUser} />}></Route>
         <Route path="/home" element={<Home currentUser={user} />}></Route>
         <Route path="/inventory" element={<Inventory />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
-
+        {/* <Route path="/pokemon_details" element={<Pokemon_details />}></Route> */}
 
         
       </Routes>

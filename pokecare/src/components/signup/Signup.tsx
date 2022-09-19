@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css"
 import PokeApi from "../../utils/ApiConfigs";
-import User from "../../models/User";
+
 
 /*
  * export default: a module is a self contained unit that can expose assets to other modules using export, and acquire assets from other modules using import. 
@@ -55,6 +55,7 @@ export default function Register() {
             .then(() => {
                 alert("Account created successfully!");
                 navigate("/home");
+                
             })
             .catch(error => {
                 alert(error.response.data.message);
