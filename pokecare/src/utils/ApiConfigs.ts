@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const YOLP_API = axios.create({
-    baseURL: "http://localhost:8080/pokecare",
+const PokeApi = axios.create({
+    baseURL: "Pokecare-env.eba-vvzgvtim.us-east-1.elasticbeanstalk.com",
     headers: {
         "Content-type": "application/json"
     }
 })
 
-export default YOLP_API;
+export default PokeApi;
