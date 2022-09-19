@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./Inventory.css";
+//import "./Inventory.css";
 import React from "react";
 import ReactDOM from "react-dom"
 
@@ -21,7 +21,7 @@ export default function Inventory(){
 }
 
 const container = document.getElementById("container");
-const pkmNumber = 5;
+const pkmNumber = 21;
  
  const fetchPkm = async () => {
      for (let i = 1; i <= pkmNumber; i++) {
@@ -51,10 +51,6 @@ const pkmNumber = 5;
      pokemonEl.innerHTML = pokeInnerHtml;
      // @ts-ignore: Object is possibly 'null'.
      container.appendChild(pokemonEl);
-     
  }
-
-
-
 
 
