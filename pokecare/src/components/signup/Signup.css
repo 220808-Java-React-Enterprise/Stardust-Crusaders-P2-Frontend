@@ -4,22 +4,24 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    -webkit-text-stroke: .5px grey;
+    font-color: black;
 }
 
 .background {
     width: 430px;
-    height: auto;
+    height: 820px;
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
-    top: 50%;
+    top: 70%;
     background-color: #080710;
     border-radius: 2%;
 }
 
 .background .shape {
-	box-sizing: border-box;
-  	border: 10px solid #262122;
+    box-sizing: border-box;
+      border: 10px solid #262122;
     height: 250px;
     width: 250px;
     position: absolute;
@@ -54,7 +56,7 @@
 }
 
 .shape:first-child {
-	background: linear-gradient( 150deg, #BA0C2F 0%, #BA0C2F 48%, #262122 48%, #262122 52%, #FFF 52%, #FFF 100%);
+    background: linear-gradient( 150deg, #BA0C2F 0%, #BA0C2F 48%, #262122 48%, #262122 52%, #FFF 52%, #FFF 100%);
     left: -140px;
     top: -80px;
 }
@@ -66,12 +68,12 @@
 }
 
 form {
-    height: auto;
+    height: 900px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
-    position: relative;
+    position: absolute;
     transform: translate(-50%, -50%);
-    top: 50%;
+    top: 70%;
     left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -100,10 +102,7 @@ label {
     margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-
 }
-
 input {
     display: block;
     height: 50px;
