@@ -1,5 +1,9 @@
+import User from "../../models/User";
 
-export default function Home() {
+interface UserProp{
+  currentUser: User | null;
+}
+export default function Home({currentUser}: UserProp) {
     return (
         <>
         <div className="mainBody">
@@ -23,9 +27,9 @@ export default function Home() {
 <div className="content">
   <h1>
   Main Menu Body Area
+
   </h1>
 </div>
-
 </div>
 
 
