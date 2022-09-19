@@ -1,9 +1,20 @@
 
 import { useNavigate } from "react-router-dom";
+import User from "../../models/User";
 import "./Navbar.css";
 
-export default function Navbar() {
+interface UserProp{
+    currentUser: User | null;
+  }
+
+export default function Navbar({currentUser}: UserProp) {
     const navigate = useNavigate();
+
+    function logout(){
+        window.sessionStorage.removeItem("user");
+        navigate("/home");
+        window.location.reload();
+    }
 
     return (
         <>
@@ -13,7 +24,8 @@ export default function Navbar() {
   <a href="#news">News</a>
   <a href="#contact">Contact</a>
   <a href="#about">About</a>
-  <a className="cta" onClick={() => navigate("/signup")}>Sign In</a>
+  {currentUser ? <a className="cta" onClick={logout}>Sign Out</a>
+  : <a className="cta" onClick={() => navigate("/auth")}>Sign In</a>}
 </div>
 
             </body>
