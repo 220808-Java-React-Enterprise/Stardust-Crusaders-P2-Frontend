@@ -5,6 +5,7 @@ import axios from 'axios'
 import "./Addpoke.css"
 
 
+
 interface UserProp{
     currentUser: User | null;
   }
@@ -16,7 +17,7 @@ export default function Addpoke({currentUser}: UserProp){
          * For example, useState is a Hook that lets you add React state to function components.
          */
         const [name, setName] = useState("");
-        const [pokedex_id, setPokedex_id] = useState("");
+        const [pokedex_id, setPokedex_id] = useState(Number);
         const [ability, setAbility] = useState("");
         const [nature, setNature] = useState("");
 
@@ -37,31 +38,19 @@ export default function Addpoke({currentUser}: UserProp){
             setNature(event.target.value);
         }
         
-        // fetch(`https://pokeapi.co/api/v2/pokemon/${updatePokedex_id}`)
-        // .then(response => response.json())
-        // .then(data => this.setState({}))
 
         // const getPkm = async (id: string) => {
-            
-        //     axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        //     .then(response => response.data)
-
-        // }
-
-        // const getPkm:any(id : string){
-        //     axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        //      .then(res => {
-        //         const pokemon = res.data;
-        //         this.setState({ pokemon })
-
-        //         })
+        //     const url = 
+        //     `https://pokeapi.co/api/v2/pokemon/${id}`;
+        //     const res = await fetch(url);
+        //     const pokemon = await res.json();
+        //    return pokemon;
         // }
 
         //    useEffect(() =>{
         //     getPkm(pokedex_id)
 
         //    })
-
         
 
 
@@ -89,9 +78,9 @@ export default function Addpoke({currentUser}: UserProp){
                 });
     
             setName("");
-            setPokedex_id("");
-            // setAbility("");
-            // setNature("");
+            setPokedex_id(Number);
+            setAbility("");
+            setNature("");
             
         }
     
@@ -114,6 +103,7 @@ export default function Addpoke({currentUser}: UserProp){
     
                             <label htmlFor="ability">Ability</label>
                             <input type="text" placeholder="ability" id="ability" value={ability} onChange={updateAbility}/>
+                            
     
                             <label htmlFor="nature">Nature</label>
                             <input type="text" placeholder="nature" id="nature" value={nature} onChange={updateNature}/>

@@ -22,13 +22,13 @@ function App() {
       <Navbar currentUser={user} />
       <Routes>
         <Route path="/signup" element={<Signup />}></Route>
+
         <Route path="/auth" element={<Login currentUser={user} updateCurrentUser={setUser} />}></Route>
         <Route path="/home" element={<Home currentUser={user} />}></Route>
         <Route path="/inventory" element={<Inventory />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/profile" element={<Profile currentUser={user}/>}></Route>
         <Route path="/pokemon" element={<Addpoke currentUser={user} />}></Route>
         {/* <Route path="/pokemon_details" element={<Pokemon_details />}></Route> */}
-
         
       </Routes>
     </BrowserRouter>
