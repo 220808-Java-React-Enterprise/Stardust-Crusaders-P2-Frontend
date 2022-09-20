@@ -66,12 +66,17 @@ width: 70vw;
 height: 80vh;
 margin: 0 auto;
 margin-top: 2%;
+margin-bottom: 2%;
 
 }
 .topholder{
 height: 33%;
 background-color: #5ca7df;
 
+}
+
+#name{
+  margin-left: 3%;
 }
 
 
