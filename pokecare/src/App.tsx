@@ -8,6 +8,7 @@ import Navbar from './components/navbar/Navbar';
 import Inventory from './components/inventory/Inventory';
 import Profile from './components/profile/Profile';
 import User from './models/User';
+import Addpoke from './components/addpoke/Addpoke';
 // import Pokemon_details from './components/pokemon_details/Pokemon_details';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/home" element={<Home currentUser={user} />}></Route>
         <Route path="/inventory" element={<Inventory />}></Route>
         <Route path="/profile" element={<Profile currentUser={user}/>}></Route>
+        <Route path="/pokemon" element={<Addpoke currentUser={user} />}></Route>
         {/* <Route path="/pokemon_details" element={<Pokemon_details />}></Route> */}
         
       </Routes>
