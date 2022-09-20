@@ -12,7 +12,7 @@ export default function Inventory(){
             <title>Pokedex</title>
             <body>
             <h1>Pokedex</h1>
-            <div className="conteiner" id="container"></div>
+            <div id="container"></div>
             <script src="pokedex.js"></script>
             </body>
 
@@ -21,7 +21,7 @@ export default function Inventory(){
 }
 
 const container = document.getElementById("container");
-const pkmNumber = 21;
+const pkmNumber = 33;
  
  const fetchPkm = async () => {
      for (let i = 1; i <= pkmNumber; i++) {
@@ -44,8 +44,26 @@ const pkmNumber = 21;
      pokemonEl.classList.add("pokemon");
      const pokeInnerHtml = `
      <div class="pkm-card">${pokemon.name}
-     <img class="pkm-images" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png"/>
+     <img class="pkm-images" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg"/>
      <div class="type">Type: ${pokemon.types[0].type.name}</div>
+     <div class="ability">Ability: ${pokemon.abilities[0].ability.name}</div>
+     <div class="stats"><h3>Base Stats</h3>
+     <br/>
+     HP: ${pokemon.stats[0].base_stat}
+     <br/>
+     Attack: ${pokemon.stats[1].base_stat}
+     <br/>
+     Defense: ${pokemon.stats[2].base_stat}
+     <br/>
+     SP.Attack: ${pokemon.stats[3].base_stat}
+     <br/>
+     SP.Defense: ${pokemon.stats[4].base_stat}
+     <br/>
+     Speed: ${pokemon.stats[5].base_stat}
+     <br/>
+     <h3>Total base stats: ${pokemon.stats[0].base_stat + pokemon.stats[1].base_stat + pokemon.stats[2].base_stat + pokemon.stats[3].base_stat + pokemon.stats[4].base_stat + pokemon.stats[5].base_stat}</h3>
+     </div>
+
      </div>
      `;
      pokemonEl.innerHTML = pokeInnerHtml;
