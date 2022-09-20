@@ -21,7 +21,9 @@ export default function Inventory(){
 }
 
 const container = document.getElementById("container");
+
 const pkmNumber = 21;
+
  
  const fetchPkm = async () => {
      for (let i = 1; i <= pkmNumber; i++) {
