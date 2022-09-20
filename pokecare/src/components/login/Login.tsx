@@ -38,7 +38,7 @@ export default function Login({currentUser, updateCurrentUser}: UserProp) {
             password: password,  
         })
             .then((obj) => {
-                let user = new User(obj.data.id, obj.data.username, obj.data.role);
+                let user = new User(obj.data.user_id, obj.data.username, obj.data.role);
                 window.sessionStorage.setItem("user", JSON.stringify(user))
                 navigate("/home");
                 window.location.reload();
