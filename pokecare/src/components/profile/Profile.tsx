@@ -1,6 +1,12 @@
 import "./Profile.css";
+import User from "../../models/User";
 
-export default function Profile() {
+interface UserProp{
+  currentUser: User | null;
+}
+
+
+export default function Profile({currentUser}: UserProp) {
     return (
         <>
         
@@ -12,12 +18,18 @@ export default function Profile() {
 </div>
 
 <div className  = "intro">
-<div className  = "title">
-<h1>PoliceLettuce</h1>
+<div className  = "title" id="tester">
+
+
+{currentUser ? <h1 id="name">{currentUser.username}</h1>
+  : <></>}
+
+
+
 </div>
 
 <div className = "description">
-<h3> This is a sizable description that a user could enter. This tells a lot about the user and we should probably set a maximum size at some point.</h3>
+<h3 id = "desc"> This is a sizable description that a user could enter. This tells a lot about the user and we should probably set a maximum size at some point.</h3>
 </div>
 
 
@@ -33,12 +45,12 @@ export default function Profile() {
   <div className="showcase">
     <div className="singleShowcase" id="2">
       <h2>Pokemon:</h2>
-      <img alt=":(" src="assets/showcase1.jpg"></img>
+      <img alt=":(" src="assets/basepokemon.png"></img>
       <h2>Level:5</h2>
     </div>
     <div className="singleShowcase" id="1">
       <h2>Pokemon:</h2>
-      <img alt=":(" src="assets/showcase2.jpg"></img>
+      <img alt=":(" src="assets/basepokemon.png"></img>
       <h2>Level:5</h2>
 
     </div>
@@ -65,11 +77,9 @@ export default function Profile() {
 <h1> this is the footer area </h1>
 </footer>
 
-        
-        
-        
-        
-        
+    
         </>
     );
 }
+
+
