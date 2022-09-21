@@ -1,12 +1,20 @@
 import "./Profile.css";
 import User from "../../models/User";
-
+import { useNavigate } from "react-router-dom";
 interface UserProp{
   currentUser: User | null;
 }
 
 
 export default function Profile({currentUser}: UserProp) {
+
+  const navigate = useNavigate();
+
+
+  function inventory(){
+    navigate("/inventory");
+    window.location.reload();
+  }
     return (
         <>
         
@@ -63,7 +71,8 @@ export default function Profile({currentUser}: UserProp) {
 </div>
 
 <div className ="links">
-<a href="https://revature.com/" id="inventory">Inventory</a>
+<a id="inventory" onClick={inventory}>Inventory</a>
+
 </div>
 
 
