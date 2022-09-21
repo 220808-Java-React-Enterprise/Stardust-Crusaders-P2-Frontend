@@ -38,8 +38,10 @@ export default function Login({currentUser, updateCurrentUser}: UserProp) {
             password: password,  
         })
             .then((obj) => {
-                let user = new User(obj.data.user_id, obj.data.username, obj.data.role);
+                let user = { ...obj.data};
                 window.sessionStorage.setItem("user", JSON.stringify(user))
+                window.sessionStorage.setItem("auth-token", JSON.stringify(obj.headers["user-auth"]));
+                updateCurrentUser(user);
                 navigate("/home");
                 window.location.reload();
             })

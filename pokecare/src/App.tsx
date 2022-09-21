@@ -27,7 +27,7 @@ function App() {
         <Route path="/home" element={<Home currentUser={user} />}></Route>
         <Route path="/inventory" element={<Inventory />}></Route>
         <Route path="/profile" element={<Profile currentUser={user}/>}></Route>
-        <Route path="/pokemon" element={<Addpoke currentUser={user} />}></Route>
+        <Route path="/pokemon" element={<Addpoke/>}></Route>
         {/* <Route path="/pokemon_details" element={<Pokemon_details />}></Route> */}
         
       </Routes>
