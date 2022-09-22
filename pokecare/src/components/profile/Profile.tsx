@@ -27,14 +27,6 @@ export default function Profile({currentUser}: UserProp) {
 };
 */
 
-
-
-const config = {
-  headers:{
-      "user-auth": token
-  }
-};
-
   useEffect(() => {
     console.log("order check 1");
 
@@ -78,6 +70,60 @@ const config = {
       console.log(numDaycare);  
       pokeList?.length ? numDaycare = pokeList.length : numDaycare = 22;
 
+  /*
+  window.onload = () => {
+    console.log("ONLOAD");
+    console.log("wack");
+};
+*/
+
+  
+const config = {
+  headers:{
+      "user-auth": token
+  }
+};
+
+  useEffect(() => {
+    console.log("order check 1");
+
+      const data = window.sessionStorage.getItem("user");
+    
+      if (data !== null) setUser(JSON.parse(data));
+      else navigate("/login");
+  }, []);
+
+  useEffect(() => {
+    console.log("order check 2");
+      const data = window.sessionStorage.getItem("auth-token");
+      console.log(data);
+      if (data !== null) setToken(JSON.parse(data))
+      
+  }, []);
+
+
+  useEffect(() => {
+    console.log("weeeeeeee");
+    PokeApi.get("/pokemon/viewindaycare", {
+      headers: {
+          "user-auth": token
+      }
+  }).then(response => {
+      setPokeList(response.data);
+      console.log(response.data);
+      
+  });
+  test = true;
+  }, [token]);
+
+     /*
+      const [name, setName] = useState("");
+      const [pokedex_id, setPokedex_id] = useState(Number);
+      const [ability, setAbility] = useState("");
+      const [nature, setNature] = useState("");
+    */
+      
+      console.log(pokeList);
 
   function inventory(){
     navigate("/inventory");
