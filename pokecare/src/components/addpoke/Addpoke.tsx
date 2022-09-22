@@ -4,6 +4,9 @@ import axios from 'axios'
 import "./Addpoke.css"
 import User from "../../models/User";
 import { useNavigate } from "react-router-dom";
+import Pokemon from "../../models/Pokemon";
+
+
 
 
 
@@ -14,6 +17,7 @@ export default function Addpoke(){
 
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string>("");
+    const [poke, setPoke] = useState<Pokemon | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,9 +33,13 @@ export default function Addpoke(){
 
        
         const [name, setName] = useState("");
-        const [pokedex_id, setPokedex_id] = useState(Number);
+        var [pokedex_id, setPokedex_id] = useState(Number);
         const [ability, setAbility] = useState("");
         const [nature, setNature] = useState("");
+
+    //     const natures = ["Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed", "Impish", "Lax",
+    // "Timid", "Hasty", "Serious", "Jolly", "Naive", "Modest", "Mild", "Quiet", "Bashful", "Rash", "Calm", "Gentle", "Sassy","Careful", "Quirky"]
+
 
         const config = {
             headers:{
@@ -47,6 +55,10 @@ export default function Addpoke(){
             setPokedex_id(event.target.value);
         }
 
+        function updatePoke(event: any) {
+            setPoke(event.target.value);
+        }
+
         function updateAbility(event: any) {
             setAbility(event.target.value);
         }
@@ -54,26 +66,26 @@ export default function Addpoke(){
             setNature(event.target.value);
         }
 
-         //const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
 
-        //the below is for params with get in axios
 
-        //axios.get(url, { params: {id: pokedex_id}})
+        useEffect(() => {
+            const url = `https://pokeapi.co/api/v2/pokemon/${pokedex_id}`;
 
-        // useEffect(() => {
-        //     const fetchPoke = async () => {
-                
-        //     axios.get(url, { params: {id: pokedex_id}})
-        //     .then(res => {
-        //         console.log("Getting pokemon from DB", res.data)
-        //         setAbility(res.data)
-        //     }) .catch(err => console.log(err))
-        // };
-        // fetchPoke();
-        // }, [])
+                const fetchPoke = async () => {
+                    
+               await axios.get(url)
+                .then(res => {
+                    console.log("Getting pokemon from DB", res.data)
+                    setPoke(res.data);
+                }) .catch(err => console.log(err))
+            };
+            fetchPoke();
+            }, [])
 
-        async function submit(event: { preventDefault: () => void; }) {
+
+        async function submit(this: any, event: { preventDefault: () => void; }) {
             event.preventDefault();
+
             await PokeApi.post("/pokemon/save", {
                 
                 name: name,
@@ -91,7 +103,6 @@ export default function Addpoke(){
                 });
 
             setName("");
-            setPokedex_id(0);
             setAbility("");
             setNature("");
             
@@ -118,7 +129,8 @@ export default function Addpoke(){
                             <input type="text" placeholder="ability" id="ability" value={ability} onChange={updateAbility} />
                             
                             <label htmlFor="nature">Nature</label>
-                            <input type="text" placeholder="nature" id="nature" value={nature} onChange={updateNature}/>
+                            <input type="text" placeholder="nature" id="nature" value={nature} onChange={updateNature} />
+                            
     
                             <button type="submit">Add Pokemon!</button>
                         </form>
@@ -129,6 +141,9 @@ export default function Addpoke(){
         }
     
      
+
+
+
 //<input type="text" placeholder="ability" id="ability" value={ability} onChange={updateAbility} />
 //<input type="text" placeholder="nature" id="nature" value={nature} onChange={updateNature} />
 
@@ -159,3 +174,20 @@ export default function Addpoke(){
         // <option value= {ability[2]} onClick={updateAbility}>   </option>
 
         // </select>
+
+
+        //the below is for params with get in axios
+
+        //axios.get(url, { params: {id: pokedex_id}})
+
+        // useEffect(() => {
+        //     const fetchPoke = async () => {
+                
+        //     axios.get(url, { params: {id: pokedex_id}})
+        //     .then(res => {
+        //         console.log("Getting pokemon from DB", res.data)
+        //         setAbility(res.data)
+        //     }) .catch(err => console.log(err))
+        // };
+        // fetchPoke();
+        // }, [])
