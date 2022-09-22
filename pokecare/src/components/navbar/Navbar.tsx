@@ -17,8 +17,10 @@ export default function Navbar({currentUser}: UserProp) {
     }
 
     function profile(){
+
         navigate("/profile");
-        
+        window.location.reload();
+
     }
 
     return (

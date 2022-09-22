@@ -20,6 +20,10 @@ export default function Inventory(){
 
         </>
     )
+
+
+
+    
 }
 
 const container = document.getElementById("grid");
