@@ -16,6 +16,7 @@ export default function Profile({currentUser}: UserProp) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string>("");
   const [pokeList, setPokeList] = useState<Pokemon[]>();
+  var numDaycare = 0;
   var usernameTest = "";
   var test = false;
 
@@ -26,7 +27,8 @@ export default function Profile({currentUser}: UserProp) {
 };
 */
 
-  
+
+
 const config = {
   headers:{
       "user-auth": token
@@ -60,7 +62,6 @@ const config = {
   }).then(response => {
       setPokeList(response.data);
       console.log(response.data);
-      
   });
   test = true;
   }, [token]);
@@ -74,11 +75,16 @@ const config = {
     */
       
       console.log(pokeList);
+      console.log(numDaycare);  
+      pokeList?.length ? numDaycare = pokeList.length : numDaycare = 22;
+
 
   function inventory(){
     navigate("/inventory");
     window.location.reload();
   }
+
+
 
 
     return (
@@ -94,6 +100,8 @@ const config = {
 <div className  = "intro">
 <div className  = "title" id="tester">
 
+
+<p id="demo"></p>
 
 {user ? <h1 id="name">{user.username}</h1>
   : <></>}
@@ -119,15 +127,16 @@ const config = {
   <div className="showcase">
     <div className="singleShowcase" id="2">
       
-      {pokeList ? <h2>Pokemon: {pokeList[0].name}</h2> : <h2>Daycare Slot Empty!</h2> }
-      {pokeList ? <img alt=":(" src="assets/lancer.png"></img> : <img alt=":(" src="assets/basepokemon.png"></img>}
-      {pokeList ? <h2>Level:5</h2> : <></>}
+      {(pokeList?.length == 1 || pokeList?.length == 2) ?<h2>Pokemon: {pokeList[0]?.name}</h2> : <h2>Daycare Slot Empty!</h2> }
+      {(pokeList?.length == 1 || pokeList?.length == 2) ? <img alt=":(" src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/' + pokeList[0].pokedex_id + ".gif"}></img> : <img alt=":(" src="assets/basepokemon.png"></img>}
+      {(pokeList?.length == 1 || pokeList?.length == 2) ? <h2>Level: {pokeList[0].level}</h2> : <></>}
     </div>
     <div className="singleShowcase" id="1">
       
-    {pokeList ? <h2>Pokemon: {pokeList[0].name}</h2> : <h2>Daycare Slot Empty!</h2> }
-      {pokeList ? <img alt=":(" src="assets/lancer.png"></img> : <img alt=":(" src="assets/basepokemon.png"></img>}
-      {pokeList ? <h2>Level:5</h2> : <></>}
+    {pokeList?.length == 2 ? <h2>Pokemon: {pokeList[1]?.name}</h2> : <h2>Daycare Slot Empty!</h2> }
+      {pokeList?.length == 2 ? <img alt=":(" src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/' + pokeList[1].pokedex_id + ".gif"}></img> : <img alt=":(" src="assets/basepokemon.png"></img>}
+      {pokeList?.length == 2 ? <h2>Level: {pokeList[1].level}</h2> : <h2>Add a pokemon to your daycare!</h2>}
+
 
     </div>
   </div>
@@ -157,6 +166,13 @@ const config = {
     
         </>
     );
+
+
+    
 }
+
+
+
+
 
 
