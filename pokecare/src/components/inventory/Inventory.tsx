@@ -24,7 +24,7 @@ export default function Inventory(){
 
 const container = document.getElementById("grid");
 
-const pkmNumber = 12;
+const pkmNumber = 20;
 
  const fetchPkm = async () => {
      for (let i = 1; i <= pkmNumber; i++) {
@@ -53,7 +53,7 @@ const pkmNumber = 12;
 
      
      <div className="pokemon">
-                        <a href="https://revature.com/"> <img alt="Qries" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg"></img></a>
+                        <a href="https://revature.com/"> <img alt="Qries" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif"></img></a>
                         <div className="text">
                             <h3>${pokemon.name}</h3>
                              <h3> Level: 5 </h3>
