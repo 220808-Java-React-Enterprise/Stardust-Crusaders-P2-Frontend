@@ -20,11 +20,19 @@ export default function Inventory(){
 
         </>
     )
+
+
+
+    
 }
 
 const container = document.getElementById("grid");
 
+<<<<<<< HEAD
 const pkmNumber = 20;
+=======
+const pkmNumber =  3;
+>>>>>>> main
 
  const fetchPkm = async () => {
      for (let i = 1; i <= pkmNumber; i++) {
@@ -38,10 +46,15 @@ const pkmNumber = 20;
      const res = await fetch(url);
      const pokemon = await res.json();
      createPokemonCard(pokemon);
+     window.sessionStorage.setItem("poke", JSON.stringify(pokemon));
  }
 
- fetchPkm();
 
+
+ fetchPkm();
+//make the sprite grab the correct id? 
+//pokemon that is generated is from the number
+//DELETE JSON upon leaving pokedetails page
  function createPokemonCard(pokemon: any) {
      let pokemonEl = document.createElement("div");
      pokemonEl.classList.add("pokemon");
@@ -53,7 +66,11 @@ const pkmNumber = 20;
 
      
      <div className="pokemon">
+<<<<<<< HEAD
                         <a href="https://revature.com/"> <img alt="Qries" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif"></img></a>
+=======
+                        <a href="http://localhost:3000/pokemon_details"> <img alt="Qries" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg"></img></a>
+>>>>>>> main
                         <div className="text">
                             <h3>${pokemon.name}</h3>
                              <h3> Level: 5 </h3>
