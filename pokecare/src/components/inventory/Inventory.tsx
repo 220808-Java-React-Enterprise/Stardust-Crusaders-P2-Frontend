@@ -1,22 +1,91 @@
-import { useNavigate } from "react-router-dom";
 import "./Inventory.css";
 import React from "react";
 import ReactDOM from "react-dom"
+import User from "../../models/User";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Pokemon from "../../models/Pokemon";
+import PokeApi from "../../utils/ApiConfigs";
 
 const POKEMON = 1;
 
-export default function Inventory(){
+
+
+interface UserProp{
+    currentUser: User | null;
+  }
+  
+
+
+export default function Inventory({currentUser}: UserProp){
+
+    const navigate = useNavigate();
+    const [user, setUser] = useState<User | null>(null);
+    const [token, setToken] = useState<string>("");
+    const [pokeList, setPokeList] = useState<Pokemon[]>();
+
+
+
+    useEffect(() => {
+        console.log("order check 1");
+    
+          const data = window.sessionStorage.getItem("user");
+        
+          if (data !== null) setUser(JSON.parse(data));
+          else navigate("/login");
+      }, []);
+    
+      useEffect(() => {
+        console.log("order check 2");
+          const data = window.sessionStorage.getItem("auth-token");
+          console.log(data);
+          if (data !== null) setToken(JSON.parse(data))
+          
+      }, []);
+    
+    
+      useEffect(() => {
+        PokeApi.get("/pokemon/viewall", {
+          headers: {
+              "user-auth": token
+          }
+      }).then(response => {
+          setPokeList(response.data);
+          console.log(response.data);
+      });
+      }, [token]);
+    
+
+
+
 
     return(
+        <>
+        {pokeList ? 
         <>
             <div className="inventory">
                 <div className="grid" id="grid">
                     
+                    {pokeList.map(pokemon => (
+                            <div className="pokemon">
+                            <a href="http://localhost:3000/pokemon_details"> <img alt="Qries" src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/' + pokemon.pokedex_id + ".gif"}></img></a>
+                            <div className="text">
+                                <h3>{pokemon.name}</h3>
+                                 <h3> Level: {pokemon.level} </h3>
+                            </div>
+                        </div>
+
+
+
+                    ))}
   
   
 
                     </div>
                     </div>
+        
+        </>
+         : <></>}
 
         </>
     )
@@ -25,14 +94,12 @@ export default function Inventory(){
 
     
 }
-
+/*
 const container = document.getElementById("grid");
 
-<<<<<<< HEAD
+
 const pkmNumber = 20;
-=======
-const pkmNumber =  3;
->>>>>>> main
+
 
  const fetchPkm = async () => {
      for (let i = 1; i <= pkmNumber; i++) {
@@ -61,31 +128,21 @@ const pkmNumber =  3;
 
 
      const pokeInnerHtml = `
-
-
-
      
      <div className="pokemon">
-<<<<<<< HEAD
                         <a href="https://revature.com/"> <img alt="Qries" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif"></img></a>
-=======
                         <a href="http://localhost:3000/pokemon_details"> <img alt="Qries" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg"></img></a>
->>>>>>> main
                         <div className="text">
                             <h3>${pokemon.name}</h3>
                              <h3> Level: 5 </h3>
                         </div>
                     </div>
      
-
      </div>
      `;
 
      /*
      const pokeInnerHtml = `
-
-
-
      
      <div class="pkm-card">${pokemon.name}
      <img class="pkm-images" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg"/>
@@ -94,16 +151,15 @@ const pkmNumber =  3;
      <div class="stats"><h3>Base Stats</h3>
      <br/>
      
-
      </div>
      `;
      
-     */
+     
 
      
      pokemonEl.innerHTML = pokeInnerHtml;
      // @ts-ignore: Object is possibly 'null'.
      container.appendChild(pokemonEl);
  }
-
-
+ */
+ 
