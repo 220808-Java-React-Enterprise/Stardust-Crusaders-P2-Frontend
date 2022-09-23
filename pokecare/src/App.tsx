@@ -32,7 +32,7 @@ function App() {
 
         <Route path="/auth" element={<Login currentUser={user} updateCurrentUser={setUser} />}></Route>
         <Route path="/home" element={<Home currentUser={user} />}></Route>
-        <Route path="/inventory" element={<Inventory />}></Route>
+        <Route path="/inventory" element={<Inventory currentUser={user}/>}></Route>
         <Route path="/profile" element={<Profile currentUser={user}/>}></Route>
         <Route path="/pokemon" element={<Addpoke/>}></Route>
         <Route path="/pokemon_details" element={<Pokemon_details currentPoke={poke}/>}></Route> 
