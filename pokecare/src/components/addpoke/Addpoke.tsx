@@ -7,12 +7,6 @@ import { useNavigate } from "react-router-dom";
 import Pokemon from "../../models/Pokemon";
 
 
-
-
-
-
-
-
 export default function Addpoke(){
 
     const [user, setUser] = useState<User | null>(null);
@@ -33,8 +27,9 @@ export default function Addpoke(){
 
        
         const [name, setName] = useState("");
-        var [pokedex_id, setPokedex_id] = useState(Number);
+        const [pokedex_id, setPokedex_id] = useState(Number);
         const [ability, setAbility] = useState("");
+        const [pokeAbilties, setPokeAbilities] = useState([]);
         const [nature, setNature] = useState("");
 
     //     const natures = ["Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed", "Impish", "Lax",
@@ -59,6 +54,10 @@ export default function Addpoke(){
             setPoke(event.target.value);
         }
 
+        function updatePokeAbilities(event: any) {
+            setPokeAbilities(event.target.value);
+        }
+
         function updateAbility(event: any) {
             setAbility(event.target.value);
         }
@@ -66,21 +65,28 @@ export default function Addpoke(){
             setNature(event.target.value);
         }
 
+        async function fetchPoke(pokedex_id: number) {
+            await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokedex_id}`)
+            .then(res =>  { 
+            console.log("Getting pokemon from DB", res.data)
+            setPoke(res.data);
+            //setPokeAbilities(res.data.abilities);
+            const poke = setPoke(res.data);
+            }) .catch(err => console.log(err))
+        };
+        
+            useEffect(() => {
+                fetchPoke(pokedex_id).then(updatePokedex_id)
+                console.log("useEffect ran ...");
+            }, [pokedex_id])
+        
+        
+        function showAbility(){
+
+        }
 
 
-        useEffect(() => {
-            const url = `https://pokeapi.co/api/v2/pokemon/${pokedex_id}`;
 
-                const fetchPoke = async () => {
-                    
-               await axios.get(url)
-                .then(res => {
-                    console.log("Getting pokemon from DB", res.data)
-                    setPoke(res.data);
-                }) .catch(err => console.log(err))
-            };
-            fetchPoke();
-            }, [])
 
 
         async function submit(this: any, event: { preventDefault: () => void; }) {
@@ -103,7 +109,6 @@ export default function Addpoke(){
                 });
 
             setName("");
-            setAbility("");
             setNature("");
             
         }
@@ -126,7 +131,14 @@ export default function Addpoke(){
                             <input type="text" placeholder="nickname (optional)" id="name" value={name} onChange={updateName}/>
     
                             <label htmlFor="ability">Ability</label>
-                            <input type="text" placeholder="ability" id="ability" value={ability} onChange={updateAbility} />
+                           
+
+                            {/* <select value="abilities">
+                            <option value= {poke?.abilities[0]} onClick={updateAbility}>{poke?.abilities[0]}</option>
+                            <option value= {ability[1]} onClick={updateAbility}> Ability 2  </option>
+                            <option value= {ability[2]} onClick={updateAbility}>  Hidden Ability </option>
+
+                            </select> */}
                             
                             <label htmlFor="nature">Nature</label>
                             <input type="text" placeholder="nature" id="nature" value={nature} onChange={updateNature} />
@@ -181,13 +193,15 @@ export default function Addpoke(){
         //axios.get(url, { params: {id: pokedex_id}})
 
         // useEffect(() => {
+        //     const url = `https://pokeapi.co/api/v2/pokemon/${pokedex_id}`;
+
         //     const fetchPoke = async () => {
-                
-        //     axios.get(url, { params: {id: pokedex_id}})
-        //     .then(res => {
-        //         console.log("Getting pokemon from DB", res.data)
-        //         setAbility(res.data)
-        //     }) .catch(err => console.log(err))
-        // };
-        // fetchPoke();
-        // }, [])
+                    
+        //        await axios.get(url)
+        //         .then(res => {
+        //             console.log("Getting pokemon from DB", res.data)
+        //             setPoke(res.data);
+        //         }) .catch(err => console.log(err))
+        //     };
+        //     fetchPoke();
+        //     }, [updatePokedex_id])
