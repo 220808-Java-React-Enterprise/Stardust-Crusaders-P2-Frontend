@@ -10,13 +10,10 @@ import PokeApi from "../../utils/ApiConfigs";
 const POKEMON = 1;
 
 
-
 interface UserProp{
     currentUser: User | null;
   }
   
-
-
 export default function Inventory({currentUser}: UserProp){
 
     const navigate = useNavigate();
