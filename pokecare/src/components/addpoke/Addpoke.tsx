@@ -78,7 +78,7 @@ export default function Addpoke(){
             useEffect(() => {
                 fetchPoke(pokedex_id).then(updatePokedex_id)
                 console.log("useEffect ran ...");
-            }, [pokedex_id])
+            }, [pokedex_id])    
         
         
         function showAbility(){
