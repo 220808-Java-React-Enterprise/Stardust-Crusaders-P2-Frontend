@@ -5,9 +5,7 @@ import "./Addpoke.css"
 import User from "../../models/User";
 import { useNavigate } from "react-router-dom";
 import Pokemon from "../../models/Pokemon";
-import { text } from "stream/consumers";
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
-import { forEachChild } from "typescript";
+
 
 
 export default function Addpoke(){
@@ -49,17 +47,6 @@ export default function Addpoke(){
         "Gentle", "Sassy","Careful", "Quirky"
     ]
     
-
-        
-        
-//=============================================================
-
-
-
-
-//=============================================================
-
-
         const config = {
             headers:{
                 "user-auth": token
@@ -123,16 +110,12 @@ export default function Addpoke(){
             setAbility(res.data.abilities[0].ability.name)
             setAbility2(res.data.abilities[1].ability.name)
             if (res.data.abilities[2].ability.name != null) setAbility3(res.data.abilities[2].ability.name)
-            console.log(res.data.abilities.ability);
             const poke = setPoke(res.data);
             }) .catch(err => console.log(err + " Make sure you spell your pokemon's name correctly!"))
         };
         
             useEffect(() => {
                 fetchPoke(name).then(updateName).then(updatePokedex_id).then(updatePokeAbilities).then(updateNatureList)
-                for(var i =0; i < 3; i++){
-                    console.log(pokeAbilities[i]);
-                }
                 console.log("useEffect ran ...");
             }, [name])
         
@@ -162,31 +145,33 @@ export default function Addpoke(){
             <>
                 <body>
                     <div>
-                        <div className="SignupBackground">
+                        <div className="AddpokeBackground">
                             <div className="shape"></div>
                             <div className="shape"></div>
                         </div>
-                        <form className="signupForm" onSubmit={submit}>
+                        <form className="addpokeForm" onSubmit={submit}>
                             <h3>Create your team!</h3>
 
                             <label htmlFor="pokedex_id">Pokedex ID</label>
                             <p>{pokedex_id}</p>
 
                             <label htmlFor="name">Pokemon Name</label>
-                            <input type="text" placeholder="nickname (optional)" id="name" value={name} onChange={updateName}/>
+                            <input type="text" placeholder="Pokemon Name" id="name" value={name} onChange={updateName}/>
     
-                            <label htmlFor="ability">Ability</label>
-
-                            <button type ="button">{ability}</button>
-                            <select value="ability" onChange={updatePokeAbilities}>
+                            
+                            <div className="dropdown">
+                             <button>Ability</button>
+                                <div className="dropdown-content">
+                            
                                 <option value="ability">Choose one</option>
-
                                 <option value={ability} onClick={updateAbility}>{ability}</option>
                                 <option value={ability2} onClick={updateAbility2}>{ability2}</option>
                                 <option value={ability3} onClick={updateAbility3}>{ability3}</option>
 
-                            </select>
-                            
+                                </div>
+                            </div>
+                             
+
                             <label htmlFor="nature">Nature</label>
                             <button type="button">{natureList}</button>
                             
@@ -253,17 +238,6 @@ export default function Addpoke(){
         //         }
         //     };
         //the above is for use with headers in get
-
-        // <label htmlFor="ability">Ability</label>
-
-{/* <select value="abilities">
-
-<option value= {poke?.abilities[0]} onClick={updateAbility}>{pokeAbilities[0]}</option>
-<option value= {poke?.abilities[1]} onClick={updateAbility}>{pokeAbilities[1]}</option>
-{/* <option value= {pokeAbilities[2]} onClick={updateAbility}>{pokeAbilities[2][0]}</option> */}
-//</select> */}
-
-
         //the below is for params with get in axios
 
         //axios.get(url, { params: {id: pokedex_id}})
@@ -280,30 +254,4 @@ export default function Addpoke(){
         //         }) .catch(err => console.log(err))
         //     };
         //     fetchPoke();
-        //     }, [updatePokedex_id])
-
-        // <option value= {natures[0]} onClick={updateNature}>{natures[0]}</option>
-        //                     <option value= {natures[1]} onClick={updateNature}>{natures[1]}</option>
-        //                     <option value= {natures[2]} onClick={updateNature}>{natures[2]}</option>
-        //                     <option value= {natures[3]} onClick={updateNature}>{natures[3]}</option>
-        //                     <option value= {natures[4]} onClick={updateNature}>{natures[4]}</option>
-        //                     <option value= {natures[5]} onClick={updateNature}>{natures[5]}</option>
-        //                     <option value= {natures[6]} onClick={updateNature}>{natures[6]}</option>
-        //                     <option value= {natures[7]} onClick={updateNature}>{natures[7]}</option>
-        //                     <option value= {natures[8]} onClick={updateNature}>{natures[8]}</option>
-        //                     <option value= {natures[9]} onClick={updateNature}>{natures[9]}</option>
-        //                     <option value= {natures[10]} onClick={updateNature}>{natures[10]}</option>
-        //                     <option value= {natures[11]} onClick={updateNature}>{natures[11]}</option>
-        //                     <option value= {natures[12]} onClick={updateNature}>{natures[12]}</option>
-        //                     <option value= {natures[13]} onClick={updateNature}>{natures[13]}</option>
-        //                     <option value= {natures[14]} onClick={updateNature}>{natures[14]}</option>
-        //                     <option value= {natures[15]} onClick={updateNature}>{natures[15]}</option>
-        //                     <option value= {natures[16]} onClick={updateNature}>{natures[16]}</option>
-        //                     <option value= {natures[17]} onClick={updateNature}>{natures[17]}</option>
-        //                     <option value= {natures[18]} onClick={updateNature}>{natures[18]}</option>
-        //                     <option value= {natures[19]} onClick={updateNature}>{natures[19]}</option>
-        //                     <option value= {natures[20]} onClick={updateNature}>{natures[20]}</option>
-        //                     <option value= {natures[21]} onClick={updateNature}>{natures[21]}</option>
-        //                     <option value= {natures[22]} onClick={updateNature}>{natures[22]}</option>
-        //                     <option value= {natures[23]} onClick={updateNature}>{natures[23]}</option>
-        //                     <option value= {natures[24]} onClick={updateNature}>{natures[24]}</option>
+    //     }, [updatePokedex_id])
