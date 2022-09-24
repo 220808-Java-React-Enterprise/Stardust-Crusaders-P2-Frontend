@@ -65,25 +65,27 @@ export default function Addpoke(){
             setNature(event.target.value);
         }
 
-        async function fetchPoke(pokedex_id: number) {
-            await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokedex_id}`)
+        async function fetchPoke(name: string) {
+            await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
             .then(res =>  { 
             console.log("Getting pokemon from DB", res.data)
             setPoke(res.data);
-            //setPokeAbilities(res.data.abilities);
+            setPokedex_id(res.data.id)
+            setPokeAbilities(res.data.abilities);
             const poke = setPoke(res.data);
-            }) .catch(err => console.log(err))
+            }) .catch(err => console.log(err + " Make sure you spell your pokemon's name correctly!"))
         };
         
             useEffect(() => {
-                fetchPoke(pokedex_id).then(updatePokedex_id)
+                fetchPoke(name).then(updateName)
                 console.log("useEffect ran ...");
-            }, [pokedex_id])    
-        
-        
-        function showAbility(){
+            }, [name])
 
-        }
+        
+        
+        // function popAbility(){
+        //     var ele = document.getElementById('sel');
+        // }
 
 
 
