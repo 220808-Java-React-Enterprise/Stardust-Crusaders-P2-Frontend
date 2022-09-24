@@ -57,20 +57,26 @@ h1{
   height: 80%;
  
   
-  background-color: blue;
+  background-color: rgb(32, 153, 209);
   outline-color: black;
   outline-style: solid;
   padding: 5%;
   
   }
+
+
+ 
   .text{
-    float: left;
+   
     margin-left: 2%;
   }
-  .pokemon img{
+ 
+  .pokemon button{
     float: left;
   }
-  
+  .pokeButton{
+    float: left;
+  }
   #yes{
     background-color: red;
   }

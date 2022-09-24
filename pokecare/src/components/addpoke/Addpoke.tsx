@@ -80,6 +80,7 @@ export default function Addpoke(){
                 fetchPoke(name).then(updateName)
                 console.log("useEffect ran ...");
             }, [name])
+
         
         
         // function popAbility(){

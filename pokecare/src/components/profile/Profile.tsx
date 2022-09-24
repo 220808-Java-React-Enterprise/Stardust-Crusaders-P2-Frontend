@@ -169,7 +169,7 @@ const config = {
 
 
 <div className="rest">
-  <div className="pokemon">
+  <div className="pokeSpot">
   <div className="showcase">
     <div className="singleShowcase" id="2">
       
