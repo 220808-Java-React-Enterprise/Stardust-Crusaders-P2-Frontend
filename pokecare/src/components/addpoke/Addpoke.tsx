@@ -5,6 +5,9 @@ import "./Addpoke.css"
 import User from "../../models/User";
 import { useNavigate } from "react-router-dom";
 import Pokemon from "../../models/Pokemon";
+import { text } from "stream/consumers";
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import { forEachChild } from "typescript";
 
 
 export default function Addpoke(){
@@ -29,11 +32,32 @@ export default function Addpoke(){
         const [name, setName] = useState("");
         const [pokedex_id, setPokedex_id] = useState(Number);
         const [ability, setAbility] = useState("");
-        const [pokeAbilties, setPokeAbilities] = useState([]);
+        const [ability2, setAbility2] = useState("");
+        const [ability3, setAbility3] = useState("");
+        const [pokeAbilities, setPokeAbilities] = useState([""]);
+        const [natureList, setNatureList] = useState([""]);
         const [nature, setNature] = useState("");
 
-    //     const natures = ["Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed", "Impish", "Lax",
-    // "Timid", "Hasty", "Serious", "Jolly", "Naive", "Modest", "Mild", "Quiet", "Bashful", "Rash", "Calm", "Gentle", "Sassy","Careful", "Quirky"]
+    const natures = [
+        "Hardy", "Lonely", "Brave", 
+        "Adamant", "Naughty", "Bold", 
+        "Docile", "Relaxed", "Impish", 
+        "Lax", "Timid", "Hasty", 
+        "Serious", "Jolly", "Naive", 
+        "Modest", "Mild", "Quiet", 
+        "Bashful", "Rash",  "Calm",
+        "Gentle", "Sassy","Careful", "Quirky"
+    ]
+    
+
+        
+        
+//=============================================================
+
+
+
+
+//=============================================================
 
 
         const config = {
@@ -56,44 +80,66 @@ export default function Addpoke(){
 
         function updatePokeAbilities(event: any) {
             setPokeAbilities(event.target.value);
+            setAbility(pokeAbilities.toString())
+            setAbility2(pokeAbilities.toString())
+            let ability2 = ability
+            let ability3 = ability
+            setAbility3(pokeAbilities?.toString())
+            console.log("changing ability!")
+            console.log(pokeAbilities.toString())
+            console.log(ability.toString())
         }
 
         function updateAbility(event: any) {
             setAbility(event.target.value);
+            console.log(ability)
         }
-        function updateNature(event: any) {
-            setNature(event.target.value);
+        function updateAbility2(event: any) {
+            setAbility2(event.target.value);
+            let ability2 = ability
+            console.log(ability)
+        }
+        function updateAbility3(event: any) {
+            setAbility3(event.target.value);
+            let ability3 = ability
+            console.log(ability)
         }
 
+
+        function updateNatureList(event: any) {
+          setNatureList(event.target.value)
+          setNature(natureList.toString())
+          console.log("changing nature!")
+          console.log(setNatureList.toString())
+          console.log(nature)
+        }
+       
         async function fetchPoke(name: string) {
             await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
             .then(res =>  { 
             console.log("Getting pokemon from DB", res.data)
             setPoke(res.data);
             setPokedex_id(res.data.id)
-            setPokeAbilities(res.data.abilities);
+            setAbility(res.data.abilities[0].ability.name)
+            setAbility2(res.data.abilities[1].ability.name)
+            if (res.data.abilities[2].ability.name != null) setAbility3(res.data.abilities[2].ability.name)
+            console.log(res.data.abilities.ability);
             const poke = setPoke(res.data);
             }) .catch(err => console.log(err + " Make sure you spell your pokemon's name correctly!"))
         };
         
             useEffect(() => {
-                fetchPoke(name).then(updateName)
+                fetchPoke(name).then(updateName).then(updatePokedex_id).then(updatePokeAbilities).then(updateNatureList)
+                for(var i =0; i < 3; i++){
+                    console.log(pokeAbilities[i]);
+                }
                 console.log("useEffect ran ...");
             }, [name])
 
         
-        
-        // function popAbility(){
-        //     var ele = document.getElementById('sel');
-        // }
-
-
-
-
 
         async function submit(this: any, event: { preventDefault: () => void; }) {
             event.preventDefault();
-
             await PokeApi.post("/pokemon/save", {
                 
                 name: name,
@@ -109,9 +155,7 @@ export default function Addpoke(){
                 .catch(error => {
                     alert(error.response.data.message);
                 });
-
             setName("");
-            setNature("");
             
         }
     
@@ -127,25 +171,56 @@ export default function Addpoke(){
                             <h3>Create your team!</h3>
 
                             <label htmlFor="pokedex_id">Pokedex ID</label>
-                            <input type="number" placeholder="pokedex_id" id="pokedex_id" value={pokedex_id} onChange={updatePokedex_id}/>
+                            <p>{pokedex_id}</p>
 
                             <label htmlFor="name">Pokemon Name</label>
                             <input type="text" placeholder="nickname (optional)" id="name" value={name} onChange={updateName}/>
     
                             <label htmlFor="ability">Ability</label>
-                           
 
-                            {/* <select value="abilities">
-                            <option value= {poke?.abilities[0]} onClick={updateAbility}>{poke?.abilities[0]}</option>
-                            <option value= {ability[1]} onClick={updateAbility}> Ability 2  </option>
-                            <option value= {ability[2]} onClick={updateAbility}>  Hidden Ability </option>
+                            <button type ="button">{ability}</button>
+                            <select value="ability" onChange={updatePokeAbilities}>
+                                <option value="ability">Choose one</option>
 
-                            </select> */}
+                                <option value={ability} onClick={updateAbility}>{ability}</option>
+                                <option value={ability2} onClick={updateAbility2}>{ability2}</option>
+                                <option value={ability3} onClick={updateAbility3}>{ability3}</option>
+
+                            </select>
                             
                             <label htmlFor="nature">Nature</label>
-                            <input type="text" placeholder="nature" id="nature" value={nature} onChange={updateNature} />
+                            <button type="button">{natureList}</button>
                             
-    
+                            <select value ="nature" id="nature" onChange={updateNatureList}>
+                                <option value="nature">Choose one</option>
+
+                                <option value= {natures[0]} onClick={updateNatureList}>{natures[0]}</option>
+                                <option value= {natures[1]} onClick={updateNatureList}>{natures[1]}</option>
+                                <option value= {natures[2]} onClick={updateNatureList}>{natures[2]}</option>
+                                <option value= {natures[3]} onClick={updateNatureList}>{natures[3]}</option>
+                                <option value= {natures[4]} onClick={updateNatureList}>{natures[4]}</option>
+                                <option value= {natures[5]} onClick={updateNatureList}>{natures[5]}</option>
+                                <option value= {natures[6]} onClick={updateNatureList}>{natures[6]}</option>
+                                <option value= {natures[7]} onClick={updateNatureList}>{natures[7]}</option>
+                                <option value= {natures[8]} onClick={updateNatureList}>{natures[8]}</option>
+                                <option value= {natures[9]} onClick={updateNatureList}>{natures[9]}</option>
+                                <option value= {natures[10]} onClick={updateNatureList}>{natures[10]}</option>
+                                <option value= {natures[11]} onClick={updateNatureList}>{natures[11]}</option>
+                                <option value= {natures[12]} onClick={updateNatureList}>{natures[12]}</option>
+                                <option value= {natures[13]} onClick={updateNatureList}>{natures[13]}</option>
+                                <option value= {natures[14]} onClick={updateNatureList}>{natures[14]}</option>
+                                <option value= {natures[15]} onClick={updateNatureList}>{natures[15]}</option>
+                                <option value= {natures[16]} onClick={updateNatureList}>{natures[16]}</option>
+                                <option value= {natures[17]} onClick={updateNatureList}>{natures[17]}</option>
+                                <option value= {natures[18]} onClick={updateNatureList}>{natures[18]}</option>
+                                <option value= {natures[19]} onClick={updateNatureList}>{natures[19]}</option>
+                                <option value= {natures[20]} onClick={updateNatureList}>{natures[20]}</option>
+                                <option value= {natures[21]} onClick={updateNatureList}>{natures[21]}</option>
+                                <option value= {natures[22]} onClick={updateNatureList}>{natures[22]}</option>
+                                <option value= {natures[23]} onClick={updateNatureList}>{natures[23]}</option>
+                                <option value= {natures[24]} onClick={updateNatureList}>{natures[24]}</option>
+                            
+                            </select>
                             <button type="submit">Add Pokemon!</button>
                         </form>
                     </div>
@@ -156,7 +231,7 @@ export default function Addpoke(){
     
      
 
-
+    
 
 //<input type="text" placeholder="ability" id="ability" value={ability} onChange={updateAbility} />
 //<input type="text" placeholder="nature" id="nature" value={nature} onChange={updateNature} />
@@ -182,12 +257,12 @@ export default function Addpoke(){
 
         // <label htmlFor="ability">Ability</label>
 
-        // <select value="abilities">
-        // <option value= {ability[0]} onClick={updateAbility}>   </option>
-        // <option value= {ability[1]} onClick={updateAbility}>   </option>
-        // <option value= {ability[2]} onClick={updateAbility}>   </option>
+{/* <select value="abilities">
 
-        // </select>
+<option value= {poke?.abilities[0]} onClick={updateAbility}>{pokeAbilities[0]}</option>
+<option value= {poke?.abilities[1]} onClick={updateAbility}>{pokeAbilities[1]}</option>
+{/* <option value= {pokeAbilities[2]} onClick={updateAbility}>{pokeAbilities[2][0]}</option> */}
+//</select> */}
 
 
         //the below is for params with get in axios
@@ -207,3 +282,29 @@ export default function Addpoke(){
         //     };
         //     fetchPoke();
         //     }, [updatePokedex_id])
+
+        // <option value= {natures[0]} onClick={updateNature}>{natures[0]}</option>
+        //                     <option value= {natures[1]} onClick={updateNature}>{natures[1]}</option>
+        //                     <option value= {natures[2]} onClick={updateNature}>{natures[2]}</option>
+        //                     <option value= {natures[3]} onClick={updateNature}>{natures[3]}</option>
+        //                     <option value= {natures[4]} onClick={updateNature}>{natures[4]}</option>
+        //                     <option value= {natures[5]} onClick={updateNature}>{natures[5]}</option>
+        //                     <option value= {natures[6]} onClick={updateNature}>{natures[6]}</option>
+        //                     <option value= {natures[7]} onClick={updateNature}>{natures[7]}</option>
+        //                     <option value= {natures[8]} onClick={updateNature}>{natures[8]}</option>
+        //                     <option value= {natures[9]} onClick={updateNature}>{natures[9]}</option>
+        //                     <option value= {natures[10]} onClick={updateNature}>{natures[10]}</option>
+        //                     <option value= {natures[11]} onClick={updateNature}>{natures[11]}</option>
+        //                     <option value= {natures[12]} onClick={updateNature}>{natures[12]}</option>
+        //                     <option value= {natures[13]} onClick={updateNature}>{natures[13]}</option>
+        //                     <option value= {natures[14]} onClick={updateNature}>{natures[14]}</option>
+        //                     <option value= {natures[15]} onClick={updateNature}>{natures[15]}</option>
+        //                     <option value= {natures[16]} onClick={updateNature}>{natures[16]}</option>
+        //                     <option value= {natures[17]} onClick={updateNature}>{natures[17]}</option>
+        //                     <option value= {natures[18]} onClick={updateNature}>{natures[18]}</option>
+        //                     <option value= {natures[19]} onClick={updateNature}>{natures[19]}</option>
+        //                     <option value= {natures[20]} onClick={updateNature}>{natures[20]}</option>
+        //                     <option value= {natures[21]} onClick={updateNature}>{natures[21]}</option>
+        //                     <option value= {natures[22]} onClick={updateNature}>{natures[22]}</option>
+        //                     <option value= {natures[23]} onClick={updateNature}>{natures[23]}</option>
+        //                     <option value= {natures[24]} onClick={updateNature}>{natures[24]}</option>
