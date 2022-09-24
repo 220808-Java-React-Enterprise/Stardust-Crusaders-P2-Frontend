@@ -138,7 +138,7 @@ border: 2px solid #555;
 .links a:hover{
   background-color: pink;
 }
-.pokemon{
+.pokeSpot{
   height: 100%;
   width: 75%;
 }

@@ -118,6 +118,7 @@ export default function Addpoke(){
                 fetchPoke(name).then(updateName).then(updatePokedex_id).then(updatePokeAbilities).then(updateNatureList)
                 console.log("useEffect ran ...");
             }, [name])
+
         
 
         async function submit(this: any, event: { preventDefault: () => void; }) {
