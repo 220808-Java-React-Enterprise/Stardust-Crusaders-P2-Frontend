@@ -249,7 +249,7 @@ console.log("length this "+ eggList);
 
 
 <footer>
-<h1> this is the footer area </h1>
+<h1> </h1>
 </footer>
 
     
