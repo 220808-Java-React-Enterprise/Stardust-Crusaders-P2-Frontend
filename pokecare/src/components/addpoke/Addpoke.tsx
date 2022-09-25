@@ -5,6 +5,7 @@ import "./Addpoke.css"
 import User from "../../models/User";
 import { useNavigate } from "react-router-dom";
 import Pokemon from "../../models/Pokemon";
+import React from "react";
 
 
 
@@ -107,8 +108,8 @@ export default function Addpoke(){
             console.log("Getting pokemon from DB", res.data)
             setPoke(res.data);
             setPokedex_id(res.data.id)
-            setAbility(res.data.abilities[0].ability.name)
-            setAbility2(res.data.abilities[1].ability.name)
+            setAbility((res?.data?.abilities[0]?.ability?.name)?.charAt(0)?.toUpperCase() + (res?.data?.abilities[0]?.ability?.name)?.slice(1))
+            setAbility2((res?.data?.abilities[1]?.ability?.name)?.charAt(0)?.toUpperCase() + (res?.data?.abilities[1]?.ability?.name)?.slice(1))
             if (res.data.abilities[2].ability.name != null) setAbility3(res.data.abilities[2].ability.name)
             const poke = setPoke(res.data);
             }) .catch(err => console.log(err + " Make sure you spell your pokemon's name correctly!"))
@@ -160,52 +161,53 @@ export default function Addpoke(){
                             <input type="text" placeholder="Pokemon Name" id="name" value={name} onChange={updateName}/>
     
                             
-                            <div className="dropdown">
-                             <button>Ability</button>
-                                <div className="dropdown-content">
-                            
-                                <option value="ability">Choose one</option>
-                                <option value={ability} onClick={updateAbility}>{ability}</option>
-                                <option value={ability2} onClick={updateAbility2}>{ability2}</option>
-                                <option value={ability3} onClick={updateAbility3}>{ability3}</option>
+                            <label htmlFor="ability">Ability</label>
+                             <button type = "button">{ability}</button>
+                                
+                                <select className="addColorToFont" value= "ability" id="ability" onChange={updateAbility}>
 
-                                </div>
-                            </div>
+                                    <option className="addColorToFont" value="ability">Choose one</option>
+                                    <option className="addColorToFont" value={ability} onClick={updateAbility}>{ability}</option>
+                                    <option className="addColorToFont" value={ability2} onClick={updateAbility2}>{ability2}</option>
+                                    <option className="addColorToFont" value={ability3} onClick={updateAbility3}>{ability3}</option>
+
+                                </select>
                              
 
                             <label htmlFor="nature">Nature</label>
                             <button type="button">{natureList}</button>
                             
-                            <select value ="nature" id="nature" onChange={updateNatureList}>
-                                <option value="nature">Choose one</option>
+                            <select className="addColorToFont" value ="nature" id="nature" onChange={updateNatureList}>
+                                <option className="addColorToFont" value="nature">Choose one</option>
 
-                                <option value= {natures[0]} onClick={updateNatureList}>{natures[0]}</option>
-                                <option value= {natures[1]} onClick={updateNatureList}>{natures[1]}</option>
-                                <option value= {natures[2]} onClick={updateNatureList}>{natures[2]}</option>
-                                <option value= {natures[3]} onClick={updateNatureList}>{natures[3]}</option>
-                                <option value= {natures[4]} onClick={updateNatureList}>{natures[4]}</option>
-                                <option value= {natures[5]} onClick={updateNatureList}>{natures[5]}</option>
-                                <option value= {natures[6]} onClick={updateNatureList}>{natures[6]}</option>
-                                <option value= {natures[7]} onClick={updateNatureList}>{natures[7]}</option>
-                                <option value= {natures[8]} onClick={updateNatureList}>{natures[8]}</option>
-                                <option value= {natures[9]} onClick={updateNatureList}>{natures[9]}</option>
-                                <option value= {natures[10]} onClick={updateNatureList}>{natures[10]}</option>
-                                <option value= {natures[11]} onClick={updateNatureList}>{natures[11]}</option>
-                                <option value= {natures[12]} onClick={updateNatureList}>{natures[12]}</option>
-                                <option value= {natures[13]} onClick={updateNatureList}>{natures[13]}</option>
-                                <option value= {natures[14]} onClick={updateNatureList}>{natures[14]}</option>
-                                <option value= {natures[15]} onClick={updateNatureList}>{natures[15]}</option>
-                                <option value= {natures[16]} onClick={updateNatureList}>{natures[16]}</option>
-                                <option value= {natures[17]} onClick={updateNatureList}>{natures[17]}</option>
-                                <option value= {natures[18]} onClick={updateNatureList}>{natures[18]}</option>
-                                <option value= {natures[19]} onClick={updateNatureList}>{natures[19]}</option>
-                                <option value= {natures[20]} onClick={updateNatureList}>{natures[20]}</option>
-                                <option value= {natures[21]} onClick={updateNatureList}>{natures[21]}</option>
-                                <option value= {natures[22]} onClick={updateNatureList}>{natures[22]}</option>
-                                <option value= {natures[23]} onClick={updateNatureList}>{natures[23]}</option>
-                                <option value= {natures[24]} onClick={updateNatureList}>{natures[24]}</option>
+                                <option className="addColorToFont" value= {natures[0]} onClick={updateNatureList}>{natures[0]}</option>
+                                <option className="addColorToFont" value= {natures[1]} onClick={updateNatureList}>{natures[1]}</option>
+                                <option className="addColorToFont" value= {natures[2]} onClick={updateNatureList}>{natures[2]}</option>
+                                <option className="addColorToFont" value= {natures[3]} onClick={updateNatureList}>{natures[3]}</option>
+                                <option className="addColorToFont" value= {natures[4]} onClick={updateNatureList}>{natures[4]}</option>
+                                <option className="addColorToFont" value= {natures[5]} onClick={updateNatureList}>{natures[5]}</option>
+                                <option className="addColorToFont" value= {natures[6]} onClick={updateNatureList}>{natures[6]}</option>
+                                <option className="addColorToFont" value= {natures[7]} onClick={updateNatureList}>{natures[7]}</option>
+                                <option className="addColorToFont" value= {natures[8]} onClick={updateNatureList}>{natures[8]}</option>
+                                <option className="addColorToFont" value= {natures[9]} onClick={updateNatureList}>{natures[9]}</option>
+                                <option className="addColorToFont" value= {natures[10]} onClick={updateNatureList}>{natures[10]}</option>
+                                <option className="addColorToFont" value= {natures[11]} onClick={updateNatureList}>{natures[11]}</option>
+                                <option className="addColorToFont" value= {natures[12]} onClick={updateNatureList}>{natures[12]}</option>
+                                <option className="addColorToFont" value= {natures[13]} onClick={updateNatureList}>{natures[13]}</option>
+                                <option className="addColorToFont" value= {natures[14]} onClick={updateNatureList}>{natures[14]}</option>
+                                <option className="addColorToFont" value= {natures[15]} onClick={updateNatureList}>{natures[15]}</option>
+                                <option className="addColorToFont" value= {natures[16]} onClick={updateNatureList}>{natures[16]}</option>
+                                <option className="addColorToFont" value= {natures[17]} onClick={updateNatureList}>{natures[17]}</option>
+                                <option className="addColorToFont" value= {natures[18]} onClick={updateNatureList}>{natures[18]}</option>
+                                <option className="addColorToFont" value= {natures[19]} onClick={updateNatureList}>{natures[19]}</option>
+                                <option className="addColorToFont" value= {natures[20]} onClick={updateNatureList}>{natures[20]}</option>
+                                <option className="addColorToFont" value= {natures[21]} onClick={updateNatureList}>{natures[21]}</option>
+                                <option className="addColorToFont" value= {natures[22]} onClick={updateNatureList}>{natures[22]}</option>
+                                <option className="addColorToFont" value= {natures[23]} onClick={updateNatureList}>{natures[23]}</option>
+                                <option className="addColorToFont" value= {natures[24]} onClick={updateNatureList}>{natures[24]}</option>
                             
                             </select>
+
                             <button type="submit">Add Pokemon!</button>
                         </form>
                     </div>

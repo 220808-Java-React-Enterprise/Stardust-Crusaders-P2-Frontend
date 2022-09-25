@@ -4,6 +4,7 @@ import Pokemon from "../../models/Pokemon";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PokeApi from "../../utils/ApiConfigs";
+import React from "react";
 
 interface UserProp{
   currentUser: User | null;
@@ -16,6 +17,7 @@ export default function Profile({currentUser}: UserProp) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string>("");
   const [pokeList, setPokeList] = useState<Pokemon[]>();
+  const [egg, setEgg] = useState<Pokemon | null>(null)
   var numDaycare = 0;
   var usernameTest = "";
   var test = false;
@@ -104,11 +106,12 @@ const config = {
 
   useEffect(() => {
     console.log("weeeeeeee");
-    PokeApi.get("/pokemon/viewindaycare", {
+    PokeApi.get("/pokemon/viewall", {
       headers: {
           "user-auth": token
       }
   }).then(response => {
+    if(response.data.level = 0)
       setPokeList(response.data);
       console.log(response.data);
       
@@ -129,9 +132,45 @@ const config = {
     navigate("/inventory");
     window.location.reload();
   }
+//============================================
+  useEffect(() => {
+    console.log("for the egg!");
+    PokeApi.get("/pokemon/viewall", {
+      headers: {
+          "user-auth": token
+      }
+  }).then(response => {
+      setEgg(response.data);
+      console.log(response.data);
+      if(response.data.level==0){
+        imageURL = "assets/egg.png"
+      } else imageURL = "No Egg :c"
+      
+  });
+  test = true;
+  }, [token]);  
+ 
+  let imageURL = "";
+
+  // if(egg?.level = 0){
+  //   imageURL = "assets/egg.png"
+  // } else imageURL = "No Egg :c"
 
 
-
+  function hatchEgg(event: any) {
+    PokeApi.put("/pokemon/hatchegg", {
+        pokemon_id: egg?.pokemon_id,
+    })
+        .then((obj) => {
+            alert("Pokemon has been added to inventory");
+            navigate("/inventory");
+            window.location.reload();
+        })
+        .catch(error => {
+            alert(error.response.data.message);
+        });
+}
+//+===========================================
 
     return (
         <>
@@ -169,7 +208,7 @@ const config = {
 
 
 <div className="rest">
-  <div className="pokeSpot">
+  <div className="pokemon">
   <div className="showcase">
     <div className="singleShowcase" id="2">
       
@@ -188,8 +227,11 @@ const config = {
   </div>
 <div className="egg">
   <h2> Egg Status: </h2>
-  <img alt=":(" src="assets/egg.png"></img>
+  <img alt=":(" src={imageURL}></img>
+    {(egg?.level == 0) ?  <button className="care" onClick={(hatchEgg)}>Hatch Egg!</button> : <></>
 
+
+}
 </div>
 </div>
 
