@@ -100,7 +100,9 @@ export default function Inventory({currentUser}: UserProp){
 /*
 const container = document.getElementById("grid");
 
-const pkmNumber =  6;
+
+const pkmNumber = 20;
+
 
  const fetchPkm = async () => {
      for (let i = 1; i <= pkmNumber; i++) {
@@ -131,6 +133,7 @@ const pkmNumber =  6;
      const pokeInnerHtml = `
      
      <div className="pokemon">
+                        <a href="https://revature.com/"> <img alt="Qries" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif"></img></a>
                         <a href="http://localhost:3000/pokemon_details"> <img alt="Qries" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg"></img></a>
                         <div className="text">
                             <h3>${pokemon.name}</h3>

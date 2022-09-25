@@ -11,6 +11,7 @@ import User from './models/User';
 import Addpoke from './components/addpoke/Addpoke';
 import Pokemon_details from './components/pokemon_details/Pokemon_details';
 import Pokemon from './models/Pokemon';
+import About from './components/about/About';
 
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
         <Route path="/profile" element={<Profile currentUser={user}/>}></Route>
         <Route path="/pokemon" element={<Addpoke/>}></Route>
         <Route path="/pokemon_details" element={<Pokemon_details currentPoke={poke}/>}></Route> 
+        <Route path="/about" element={<About/>}></Route>
+
+
         
       </Routes>
     </BrowserRouter>

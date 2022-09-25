@@ -75,9 +75,9 @@ export default function Login({currentUser, updateCurrentUser}: UserProp) {
                         <label htmlFor="password">Password</label>
                         <input type="password" placeholder="Password" id="password" value={password} onChange={updatePassword}/>
 
-                        <button type="submit">Sign In</button>
+                        <button className="coolButton" type="submit">Sign In</button>
                         
-                        <button onClick={route}>Create an Account!</button>
+                        <button className="coolButton" onClick={route}>Create an Account!</button>
                         
                     </form>
                 </div>
