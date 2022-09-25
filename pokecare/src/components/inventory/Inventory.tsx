@@ -74,11 +74,7 @@ export default function Inventory({currentUser}: UserProp){
 
                             <div className="text">
                                 <h3>{pokemon.name}</h3>
-<<<<<<< HEAD
-                                 <h3> Level: {pokemon.level} </h3>
-=======
                                  <h3>Level: {pokemon.level}</h3>
->>>>>>> main
                             </div>
                         </div>
 

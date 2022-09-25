@@ -98,7 +98,7 @@ export default function Register() {
                         <label htmlFor="email">Email</label>
                         <input type="email" placeholder="Email Address" id="email" value={email} onChange={updateEmail} />
 
-                        <button type="submit">Create Account</button>
+                        <button className="coolButton" type="submit">Create Account</button>
                     </form>
                 </div>
             </body>
