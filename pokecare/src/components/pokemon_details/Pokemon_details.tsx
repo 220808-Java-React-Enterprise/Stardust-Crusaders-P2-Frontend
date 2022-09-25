@@ -125,15 +125,15 @@ export default function Pokemon_details({currentPoke}: PokeProp){
 <img src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/' + pokeDetail.pokedex_id + ".gif"}></img>
 </div>
 <div className="nameArea">
-<h1>Name: {pokeDetail.name}</h1>
-<h2>Pokemon: Lancerchu</h2>
+<h1>Name: {(pokeDetail.name).charAt(0).toUpperCase() + (pokeDetail.name).slice(1) }</h1>
+<h2>Pokemon: {(pokeDetail2?.forms[0]?.name)?.charAt(0)?.toUpperCase() + (pokeDetail2?.forms[0]?.name)?.slice(1)}</h2>
 <h2>Level: {pokeDetail.level} | EXP: {pokeDetail.xp_needed}/{pokeDetail.level * 100} XP to level</h2>
 <h2>Pokedex ID: {pokeDetail.pokedex_id}</h2>
 </div>
 
 <div className="natureArea">
 <h1>{}</h1>
-{pokeDetail2?.types[1] ? <h1> Types: {pokeDetail2?.types[0].type.name} / {pokeDetail2?.types[1]?.type.name}  </h1> : <h1> Type: {pokeDetail2?.types[0].type.name}  </h1>
+{pokeDetail2?.types[1] ? <h1> Types: {(pokeDetail2?.types[0]?.type?.name).charAt(0).toUpperCase() + (pokeDetail2?.types[0]?.type?.name).slice(1)} / {(pokeDetail2?.types[1]?.type?.name).charAt(0).toUpperCase() + (pokeDetail2?.types[1]?.type?.name).slice(1)}  </h1> : <h1> Type: {(pokeDetail2?.types[0]?.type?.name)?.charAt(0)?.toUpperCase() + (pokeDetail2?.types[0]?.type?.name)?.slice(1)}  </h1>
 
 }
 <h1> Nature: {pokeDetail.nature}</h1>
@@ -142,12 +142,12 @@ export default function Pokemon_details({currentPoke}: PokeProp){
 
 
 <div className="stats">
-<h1> HP: {(2 * pokeDetail2?.stats[0].base_stat * pokeDetail?.level)/100 + pokeDetail?.level + 10} </h1>
-<h1> Attack: {(2 * pokeDetail2?.stats[1].base_stat * pokeDetail?.level)/100 + 5} </h1>
-<h1> Defense: {(2 * pokeDetail2?.stats[2].base_stat * pokeDetail?.level)/100 + 5}  </h1>
-<h1> Sp. Attack: {(2 * pokeDetail2?.stats[3].base_stat * pokeDetail?.level)/100 + 5}  </h1>
-<h1> Sp.Defense: {(2 * pokeDetail2?.stats[4].base_stat * pokeDetail?.level)/100 + 5}  </h1>
-<h1> Speed: {(2 * pokeDetail2?.stats[5].base_stat * pokeDetail?.level)/100 + 5}  </h1>
+<h1> HP: {((2 * pokeDetail2?.stats[0].base_stat * pokeDetail?.level)/100 + pokeDetail?.level + 10).toFixed()} </h1>
+<h1> Attack: {((2 * pokeDetail2?.stats[1].base_stat * pokeDetail?.level)/100 + 5).toFixed()} </h1>
+<h1> Defense: {((2 * pokeDetail2?.stats[2].base_stat * pokeDetail?.level)/100 + 5).toFixed()}  </h1>
+<h1> Sp. Attack: {((2 * pokeDetail2?.stats[3].base_stat * pokeDetail?.level)/100 + 5).toFixed()}  </h1>
+<h1> Sp.Defense: {((2 * pokeDetail2?.stats[4].base_stat * pokeDetail?.level)/100 + 5).toFixed()}  </h1>
+<h1> Speed: {((2 * pokeDetail2?.stats[5].base_stat * pokeDetail?.level)/100 + 5).toFixed()}  </h1>
 </div>
 
 {(pokeDetail?.enroll_date != "null") ?  <button className="care" onClick={(removeDaycare)}>Remove Pokemon From Daycare</button> : (pokeList?.length != 2 ) ? <button className="care" onClick={(addDaycare)}>Add Pokemon to Daycare</button> : <></>

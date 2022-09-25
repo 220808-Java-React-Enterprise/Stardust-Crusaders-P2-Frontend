@@ -4,6 +4,7 @@ import Pokemon from "../../models/Pokemon";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PokeApi from "../../utils/ApiConfigs";
+import React from "react";
 
 interface UserProp{
   currentUser: User | null;
@@ -16,6 +17,8 @@ export default function Profile({currentUser}: UserProp) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string>("");
   const [pokeList, setPokeList] = useState<Pokemon[]>();
+  const [egg, setEgg] = useState<Pokemon| null>(null);
+  const [eggList, setEggList] = useState<Pokemon[]>();
   var numDaycare = 0;
   var usernameTest = "";
   var test = false;
@@ -46,7 +49,7 @@ export default function Profile({currentUser}: UserProp) {
 
 
   useEffect(() => {
-    console.log("weeeeeeee");
+    console.log("Viewing Pokemon in Daycare!");
     PokeApi.get("/pokemon/viewindaycare", {
       headers: {
           "user-auth": token
@@ -67,7 +70,7 @@ export default function Profile({currentUser}: UserProp) {
     */
       
       console.log(pokeList);
-      console.log(numDaycare);  
+      console.log("number in daycare " + numDaycare);  
       pokeList?.length ? numDaycare = pokeList.length : numDaycare = 22;
 
   /*
@@ -104,7 +107,7 @@ const config = {
 
   useEffect(() => {
     console.log("weeeeeeee");
-    PokeApi.get("/pokemon/viewindaycare", {
+    PokeApi.get("/pokemon/viewall", {
       headers: {
           "user-auth": token
       }
@@ -129,9 +132,45 @@ const config = {
     navigate("/inventory");
     window.location.reload();
   }
+//============================================
 
+useEffect(() => {
+  console.log("fetching the eggs!");
+  PokeApi.get("/pokemon/vieweggs", {
+    headers: {
+        "user-auth": token
+    }
+}).then(response => {
+    setEggList(response.data);
+    console.log("egg data")
+    console.log(response.data);
+    
+});
+test = true;
+}, [token]);
 
+  let imageURL = "";
 
+  if(eggList){
+    imageURL = "assets/egg.png"
+  } else imageURL = "No Egg :c"
+
+  
+console.log("length this "+ eggList);
+  function hatchEgg(event: any) {
+    PokeApi.put("/pokemon/hatchegg", {
+        pokemon_id: eggList?.[0]?.pokemon_id,
+    })
+        .then((obj) => {
+            alert("Pokemon has been added to inventory");
+            navigate("/inventory");
+            window.location.reload();
+        })
+        .catch(error => {
+            alert(error.response.data.message);
+        });
+}
+//============================================
 
     return (
         <>
@@ -169,7 +208,7 @@ const config = {
 
 
 <div className="rest">
-  <div className="pokeSpot">
+  <div className="pokemon">
   <div className="showcase">
     <div className="singleShowcase" id="2">
       
@@ -188,8 +227,12 @@ const config = {
   </div>
 <div className="egg">
   <h2> Egg Status: </h2>
-  <img alt=":(" src="assets/egg.png"></img>
+  {(eggList?.length==1) ? <img alt="No egg to be found!" src={imageURL}></img> : <></>
+}
+    {(eggList?.length==1) ?  <button className="care" onClick={(hatchEgg)}>Hatch Egg!</button> : <></>
 
+
+}
 </div>
 </div>
 
@@ -206,7 +249,7 @@ const config = {
 
 
 <footer>
-<h1> this is the footer area </h1>
+<h1> </h1>
 </footer>
 
     
