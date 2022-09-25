@@ -26,7 +26,7 @@ export default function Home({currentUser}: UserProp) {
 
 <div className="content">
   <h1>
-  Main Menu Body Area
+  
 
   </h1>
 </div>
@@ -34,7 +34,7 @@ export default function Home({currentUser}: UserProp) {
 
 
 <footer>
-<h1> this is the footer area </h1>
+<h1>  </h1>
 </footer>
 
         

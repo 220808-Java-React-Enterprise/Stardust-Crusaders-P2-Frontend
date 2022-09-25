@@ -23,6 +23,20 @@ export default function Navbar({currentUser}: UserProp) {
 
     }
 
+    function addPokemon(){
+
+      navigate("/pokemon");
+      window.location.reload();
+
+  }
+
+  function about(){
+
+    navigate("/about");
+    window.location.reload();
+
+}
+
     return (
         <>
             <body>
@@ -33,10 +47,11 @@ export default function Navbar({currentUser}: UserProp) {
 {currentUser ? <a className="cta" onClick={profile}>Profile</a>
   : <></>}
 
+{currentUser ? <a className="cta" onClick={addPokemon}>Add Pokemon</a>
+  : <></>}
+
     <a href="#" id="test" onClick={() => navigate("/home")}><img alt="Its broken!" src="assets\pokemon_home.png"width="100%" height="100%"></img></a>   
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
+  <a href="#about" onClick={about}>About</a>
 
  
 </div>
