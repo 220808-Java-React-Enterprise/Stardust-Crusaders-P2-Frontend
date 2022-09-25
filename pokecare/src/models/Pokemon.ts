@@ -3,6 +3,7 @@ export default class Pokemon{
     pokemon_id: string;
     name: string;
     level: number;
+    enroll_date: string;
     xp_needed: number; 
     abilities!: string[];
     ability: string;
@@ -13,10 +14,11 @@ export default class Pokemon{
 
     
 
-    constructor(pokemon_id: string, name: string, level: number, xp_needed: number, abilities: string[], ability: string, nature: string, pokedex_id: string, /*daycare_id: string,*/ id: string ){
+    constructor(pokemon_id: string, name: string, level: number,enroll_date: string, xp_needed: number, abilities: string[], ability: string, nature: string, pokedex_id: string, /*daycare_id: string,*/ id: string ){
         this.pokemon_id = pokemon_id;
         this.name = name;
         this.level = level;
+        this.enroll_date = enroll_date;
         this.xp_needed = xp_needed;
         this.ability = ability;
         this.abilities = abilities;

@@ -10,20 +10,17 @@ import PokeApi from "../../utils/ApiConfigs";
 const POKEMON = 1;
 
 
-
 interface UserProp{
     currentUser: User | null;
   }
   
-
-
 export default function Inventory({currentUser}: UserProp){
 
     const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string>("");
     const [pokeList, setPokeList] = useState<Pokemon[]>();
-
+   
 
 
     useEffect(() => {
@@ -55,7 +52,12 @@ export default function Inventory({currentUser}: UserProp){
       });
       }, [token]);
     
+      function pokeProfile(pokemon: any){
+        window.sessionStorage.setItem("poke", JSON.stringify(pokemon)); 
+        navigate("/pokemon_details");
+        window.location.reload();
 
+    }
 
 
 
@@ -68,10 +70,15 @@ export default function Inventory({currentUser}: UserProp){
                     
                     {pokeList.map(pokemon => (
                             <div className="pokemon">
-                            <a href="http://localhost:3000/pokemon_details"> <img alt="Qries" src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/' + pokemon.pokedex_id + ".gif"}></img></a>
+                            <a href="#" className="yes" onClick={() =>pokeProfile(pokemon)} data-value={pokemon.pokemon_id}><img alt="Its broken!" src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/' + pokemon.pokedex_id + ".gif"}></img></a>   
+
                             <div className="text">
                                 <h3>{pokemon.name}</h3>
+<<<<<<< HEAD
                                  <h3> Level: {pokemon.level} </h3>
+=======
+                                 <h3>Level: {pokemon.level}</h3>
+>>>>>>> main
                             </div>
                         </div>
 
