@@ -12,7 +12,7 @@ Team Members
 Are you a busy trainer with a software engineering job? PokeCare allows you to send your pokemon to the daycare and
  then you can go to work stress-free knowing your pokemon are well taken care of! Our daycares take in pokemon,
  train those hectic pokemon for you, and allow them to create bonds with each other.
- This allows you as a trainer stay focused on those coding challenges so you and your pokemon can succeed by then end of the day!
+ This allows you as a trainer stay focused on those coding challenges so you can be successfull, and your pokemon taken care of!
 
 ## Overview: 
 
