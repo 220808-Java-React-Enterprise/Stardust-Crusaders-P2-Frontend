@@ -59,6 +59,7 @@ Are you a busy trainer with a software engineering job? PokeCare allows you to s
 - Tech Stack:
 
 	- Java 8
+	- React
 	- IntelliJ
 	- PostgreSQL
 	- Dbeaver
