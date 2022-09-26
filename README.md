@@ -42,7 +42,6 @@ Are you a busy trainer with a software engineering job? PokeCare allows you to s
 	- Add user
 	- Login with user
 	- Select pokemon to add to daycare
-	- Calculate cost to retrieve pokemon
 	- Create eggs if pokemon are compatible
 	- API talks to external API
 	- Both Front-end and Back-end needs to be deployed
@@ -54,6 +53,8 @@ Are you a busy trainer with a software engineering job? PokeCare allows you to s
 	- Moves
 	- Items
 	- exp gain changed by factors
+	- Calculate cost to retrieve pokemon
+
 
 - Tech Stack:
 
